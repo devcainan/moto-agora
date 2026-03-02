@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /setup-google-reviews.html
+Disallow: /test-*.js
+Disallow: /debug-*.js
+Disallow: /*.bak$
+Disallow: /*.backup$
+
+Sitemap: https://www.motoagora.com.br/sitemap.xml
