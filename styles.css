@@ -901,10 +901,21 @@
   }
   .benefits-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    grid-template-columns: repeat(6, 1fr);
     gap: 32px;
     text-align: left;
     justify-items: center;
+  }
+  /* Cada card ocupa 2 colunas do grid de 6 */
+  .benefit-card {
+    grid-column: span 2;
+  }
+  /* Centralizar os 2 últimos cards (linha 2) */
+  .benefit-card:nth-child(4) {
+    grid-column: 2 / 4;
+  }
+  .benefit-card:nth-child(5) {
+    grid-column: 4 / 6;
   }
   .benefit-card {
     background: #ffffff;
@@ -1886,6 +1897,9 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 20px;
     }
+    .benefit-card {
+      grid-column: span 1 !important;
+    }
 
     .catalog-grid {
       grid-template-columns: repeat(2, 1fr);
@@ -1937,6 +1951,7 @@
     }
     .benefit-card {
       padding: 32px 24px;
+      grid-column: span 1 !important;
     }
     .benefit-icon {
       width: 72px;
