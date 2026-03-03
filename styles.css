@@ -867,9 +867,10 @@
   }
   .benefits-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 28px;
     text-align: left;
+    justify-items: center;
   }
   .benefit-card {
     background: #ffffff;
@@ -884,6 +885,8 @@
     align-items: center;
     position: relative;
     overflow: hidden;
+    width: 100%;
+    max-width: 100%;
   }
   .benefit-card::before {
     content: '';
