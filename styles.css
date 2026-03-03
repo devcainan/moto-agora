@@ -1593,6 +1593,20 @@
     color: #64748b;
     font-family: 'Courier New', monospace;
   }
+  .footer-dev {
+    font-size: 13px;
+    color: #64748b;
+  }
+  .footer-dev a {
+    color: var(--yellow);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .footer-dev a:hover {
+    color: #ffd700;
+    text-decoration: underline;
+  }
 
   /* FLOATING WA */
   .wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 999; background: #25D366; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: all .2s; text-decoration: none; }
