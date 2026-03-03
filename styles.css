@@ -148,7 +148,7 @@
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 5%; height: 72px;
   }
-  .nav-logo img { height: 40px; width: auto; }
+  .nav-logo img { height: 60px; width: auto; }
   .nav-links { display: flex; gap: 28px; list-style: none; }
   .nav-links a { color: #374151; font-size: 14px; font-weight: 500; text-decoration: none; letter-spacing: .5px; transition: color .2s; }
   .nav-links a:hover { color: var(--yellow); }
