@@ -183,13 +183,11 @@
       });
 
       if (!response.ok) {
-        console.error('Webhook error:', response.status);
         return false;
       }
 
       return true;
     } catch (error) {
-      console.error('Webhook failed:', error);
       return false;
     }
   }
@@ -237,7 +235,7 @@
 
     // Send to webhook (fire and forget - don't block user)
     sendToWebhook(formData).catch(err => {
-      console.error('Webhook error (non-blocking):', err);
+      // Silently ignore webhook errors
     });
 
     // Small delay to ensure webhook fires

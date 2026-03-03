@@ -12,7 +12,6 @@
   const colorItems = document.querySelectorAll('.modelos-color-item');
   const wrap = document.getElementById('v360Wrap');
 
-  console.log("360 Viewer carregado!");
 
   let current = 0, isDragging = false, startX = 0, accum = 0;
   let currentReverse = false; // Direção da cor atual
@@ -20,14 +19,12 @@
 
   function showFrame(n) {
     current = ((n % currentTotal) + currentTotal) % currentTotal;
-    console.log("Mostrando frame:", current, "de", currentTotal);
     frames.forEach((f, i) => {
       f.style.display = i === current ? 'block' : 'none';
     });
   }
 
   function changeColor(folder, reverse = false, frameCount = 16) {
-    console.log("Trocando para cor:", folder, "Frames:", frameCount, "Reverso:", reverse);
 
     // Update current settings
     currentReverse = reverse;
@@ -58,7 +55,6 @@
       frames.push(img);
     }
 
-    console.log("Frames criados:", frames.length);
 
     // Show second-to-last frame by default
     showFrame(currentTotal - 2);
@@ -72,7 +68,6 @@
       const reverse = activeColor.dataset.reverse === 'true';
       const frameCount = parseInt(activeColor.dataset.frames) || 16;
 
-      console.log("Inicializando viewer com:", folder, frameCount, "frames");
       changeColor(folder, reverse, frameCount);
     } else {
       console.error("Nenhuma cor ativa encontrada!");
@@ -141,6 +136,5 @@
   });
 
   // Initialize on load
-  console.log("Inicializando viewer...");
   initViewer();
 })();

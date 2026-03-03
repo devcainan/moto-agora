@@ -18,7 +18,6 @@
   };
 
   if (!CONFIG.enabled) {
-    console.log('📱 Parallax desabilitado em mobile');
     return;
   }
 
@@ -81,8 +80,6 @@
     //     delay: index * 0.05 // Efeito cascata
     //   });
     // });
-
-    console.log(`✅ Parallax inicializado: ${parallaxElements.length} elementos`);
   }
 
   // Calcular posição parallax
