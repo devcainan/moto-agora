@@ -3206,6 +3206,7 @@ section + section {
 
 .app-screenshot {
   max-width: 100%;
+  width: auto;
   height: auto;
   max-height: 600px;
   border-radius: 20px;
