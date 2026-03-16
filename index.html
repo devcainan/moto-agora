@@ -16,7 +16,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Moto Agora – Aluguel de Motos em Natal – RN">
 <meta property="og:description" content="Moto zero km em Natal de forma simples e rápida. Yamaha Factor 150cc com manutenção inclusa, seguro e rastreamento. Parcele o caução no cartão. Atendemos Grande Natal, Parnamirim e Macaíba.">
-<meta property="og:image" content="https://www.motoagora.com.br/imagens/og-image.jpg">
+<meta property="og:image" content="https://www.motoagora.com.br/imagens/og-image.webp">
 <meta property="og:url" content="https://www.motoagora.com.br/">
 <meta property="og:site_name" content="Moto Agora">
 <meta property="og:locale" content="pt_BR">
@@ -25,7 +25,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Moto Agora – Aluguel de Motos em Natal – RN">
 <meta name="twitter:description" content="Moto zero km em Natal de forma simples e rápida. Yamaha Factor 150cc com manutenção inclusa, seguro e rastreamento.">
-<meta name="twitter:image" content="https://www.motoagora.com.br/imagens/og-image.jpg">
+<meta name="twitter:image" content="https://www.motoagora.com.br/imagens/og-image.webp">
 
 <!-- Geo Tags (Negócio Local) -->
 <meta name="geo.region" content="BR-RN">
@@ -34,8 +34,8 @@
 <meta name="ICBM" content="-5.915441, -35.262916">
 
 <!-- Favicon -->
-<link rel="icon" type="image/png" href="imagens/assets/favicon.png">
-<link rel="apple-touch-icon" href="imagens/assets/favicon.png">
+<link rel="icon" type="image/webp" href="imagens/assets/favicon.webp">
+<link rel="apple-touch-icon" href="imagens/assets/favicon.webp">
 
 <!-- Preconnect to external resources -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,8 +60,8 @@
   "legalName": "Moto Agora Aluguel de Motocicletas LTDA",
   "description": "Aluguel de motos de forma simples em Natal e Grande Natal. Parcelas semanais, manutenção inclusa, não consultamos SPC.",
   "url": "https://www.motoagora.com.br",
-  "logo": "https://www.motoagora.com.br/imagens/assets/Logo-amarela-e-azul-optimized.png",
-  "image": "https://www.motoagora.com.br/imagens/assets/Logo-amarela-e-azul-optimized.png",
+  "logo": "https://www.motoagora.com.br/imagens/assets/Logo-amarela-e-azul-optimized.webp",
+  "image": "https://www.motoagora.com.br/imagens/assets/Logo-amarela-e-azul-optimized.webp",
   "telephone": "+55-84-99624-8216",
   "email": "contato@motoagora.com.br",
   "address": {
@@ -91,7 +91,7 @@
       "closes": "14:00"
     }
   ],
-  "priceRange": "R$ 279 - R$ 399",
+  "priceRange": "R$ 279 - R$ 435",
   "currenciesAccepted": "BRL",
   "paymentAccepted": "Pix, Dinheiro, Transferência Bancária",
   "areaServed": {
@@ -117,13 +117,58 @@
   }
 }
 </script>
+
+<!-- Toast notification para copiar email -->
+<style>
+.copy-toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: linear-gradient(135deg, #0066cc 0%, #004c99 100%);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 102, 204, 0.3);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 99999;
+}
+
+.copy-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.copy-toast i {
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .copy-toast {
+    bottom: 20px;
+    right: 20px;
+    left: 20px;
+    font-size: 14px;
+    padding: 14px 20px;
+  }
+}
+</style>
 </head>
 <body>
 
 <!-- PRELOADER -->
 <div id="preloader" class="preloader">
   <div class="preloader-content">
-    <img src="imagens/assets/Logo-amarela-e-azul-optimized.png" alt="Moto Agora" class="preloader-logo" width="165" height="60">
+    <img src="imagens/assets/Logo-amarela-e-azul-optimized.webp" alt="Moto Agora" class="preloader-logo" width="165" height="60">
     <div class="preloader-spinner">
       <div class="spinner-ring"></div>
       <div class="spinner-ring"></div>
@@ -138,7 +183,7 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <div class="nav-logo"><img src="imagens/assets/Logo-amarela-e-azul-optimized.png" alt="Moto Agora" width="165" height="60"></div>
+  <div class="nav-logo"><img src="imagens/assets/Logo-amarela-e-azul-optimized.webp" alt="Moto Agora" width="165" height="60"></div>
   <ul class="nav-links">
     <li><a href="#home">Home</a></li>
     <li><a href="#catalogo">Motos</a></li>
@@ -148,9 +193,9 @@
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contato">Contato</a></li>
     <li><a href="https://motoagora.com.br/portal/" target="_blank">Portal do Cliente</a></li>
-    <li><a href="mailto:contato@motoagora.com.br?subject=Trabalhe%20Conosco">Trabalhe Conosco</a></li>
+    <li><a href="#" onclick="copyEmailToClipboard(event)">Trabalhe Conosco</a></li>
   </ul>
-  <a href="#catalogo" class="nav-cta">Ver Motos <i class="fas fa-arrow-right"></i></a>
+  <a href="#catalogo" class="nav-cta">Nossas Motos <i class="fas fa-arrow-right"></i></a>
   <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
 </nav>
 
@@ -168,19 +213,18 @@
       Disponível na Grande Natal
     </div>
     <h1>
-      Realize o Sonho da<br>
-      <span>Moto Própria</span><br>
-      De Forma Simples
+      De Moto Zero KM<br>
+      <span>Sem Burocracia</span>
     </h1>
-    <p>Parcelas semanais fixas que cabem no seu bolso. Sem consulta ao SPC/Serasa, sem fiador. A moto é <strong>100% sua</strong> no final do contrato.</p>
+    <p>Parcelas semanais fixas que cabem no seu bolso. Sem consulta ao SPC/Serasa, sem fiador.</p>
     <div class="hero-btns">
-      <a href="#catalogo" class="btn-primary">
+      <a href="#cadastro" class="btn-primary">
         <i class="fas fa-motorcycle"></i>
-        Ver Motos Disponíveis
+        Quero Minha Moto Agora!
       </a>
       <a href="#planos" class="btn-secondary">
         <i class="fas fa-tag"></i>
-        Ver Planos e Preços
+        Ver Planos
       </a>
     </div>
     <div class="hero-stats">
@@ -196,8 +240,8 @@
       </div>
       <div>
         <div class="stat-icon"><i class="fas fa-key"></i></div>
-        <div class="stat-num">Moto Sua</div>
-        <div class="stat-label">No fim do contrato</div>
+        <div class="stat-num">Plano Flex</div>
+        <div class="stat-label">A partir de R$279/sem</div>
       </div>
     </div>
   </div>
@@ -207,8 +251,8 @@
 <section id="catalogo">
   <div class="catalog-header">
     <div class="section-tag">Nosso Catálogo</div>
-    <h2 class="section-title">Escolha Sua Moto</h2>
-    <p class="section-subtitle">Modelos disponíveis para você realizar seu sonho</p>
+    <h2 class="section-title">Nossas Motos</h2>
+    <p class="section-subtitle">Modelos disponíveis para realizar seu sonho</p>
   </div>
 
   <div class="catalog-container">
@@ -216,7 +260,7 @@
       <!-- Yamaha Factor 2026 -->
       <div class="moto-card">
         <div class="moto-card-image">
-          <img class="moto-card-img" src="imagens/motos/Yamaha Factor 2026/white/2.png" alt="Yamaha Factor 2026" data-original="imagens/motos/Yamaha Factor 2026/white/2.png" width="337" height="224" loading="lazy">
+          <img class="moto-card-img" src="imagens/motos/Yamaha Factor 2026/white/2.webp" alt="Yamaha Factor 2026" data-original="imagens/motos/Yamaha Factor 2026/white/2.webp" width="337" height="224" loading="lazy">
           <div class="moto-card-badge">Mais Popular</div>
         </div>
         <div class="moto-card-body">
@@ -227,9 +271,9 @@
           <div class="moto-card-colors">
             <span class="moto-card-colors-label">Cores disponíveis:</span>
             <div class="moto-colors-dots">
-              <span class="moto-color-dot active" style="background: #e8e8e8; border: 2px solid #ccc;" title="Sports White" data-image="imagens/motos/Yamaha Factor 2026/white/2.png"></span>
-              <span class="moto-color-dot" style="background: #1a1a1a;" title="Black Eclipse" data-image="imagens/motos/Yamaha Factor 2026/black/2.png"></span>
-              <span class="moto-color-dot" style="background: #c0392b;" title="Red Hot" data-image="imagens/motos/Yamaha Factor 2026/red/2.png"></span>
+              <span class="moto-color-dot active" style="background: #e8e8e8; border: 2px solid #ccc;" title="Sports White" data-image="imagens/motos/Yamaha Factor 2026/white/2.webp"></span>
+              <span class="moto-color-dot" style="background: #1a1a1a;" title="Black Eclipse" data-image="imagens/motos/Yamaha Factor 2026/black/2.webp"></span>
+              <span class="moto-color-dot" style="background: #c0392b;" title="Red Hot" data-image="imagens/motos/Yamaha Factor 2026/red/2.webp"></span>
             </div>
           </div>
 
@@ -249,7 +293,7 @@
           </div>
 
           <a href="factor-2026.html" class="moto-card-btn">
-            <span>Ver Detalhes</span>
+            <span>Conheça Mais</span>
             <i class="fas fa-arrow-right"></i>
           </a>
         </div>
@@ -258,7 +302,7 @@
       <!-- Yamaha Factor DX 2026 -->
       <div class="moto-card">
         <div class="moto-card-image">
-          <img class="moto-card-img" src="imagens/motos/Yamaha Factor DX 2026/blue/2-optimized.png" alt="Yamaha Factor DX 2026" data-original="imagens/motos/Yamaha Factor DX 2026/blue/2-optimized.png" width="337" height="224" loading="lazy">
+          <img class="moto-card-img" src="imagens/motos/Yamaha Factor DX 2026/blue/2-optimized.webp" alt="Yamaha Factor DX 2026" data-original="imagens/motos/Yamaha Factor DX 2026/blue/2-optimized.webp" width="337" height="224" loading="lazy">
           <div class="moto-card-badge moto-badge-premium">Premium</div>
         </div>
         <div class="moto-card-body">
@@ -269,9 +313,9 @@
           <div class="moto-card-colors">
             <span class="moto-card-colors-label">Cores disponíveis:</span>
             <div class="moto-colors-dots">
-              <span class="moto-color-dot" style="background: #1a1a1a;" title="Black" data-image="imagens/motos/Yamaha Factor DX 2026/black/2.png"></span>
-              <span class="moto-color-dot active" style="background: #2c5aa0;" title="Blue" data-image="imagens/motos/Yamaha Factor DX 2026/blue/2-optimized.png"></span>
-              <span class="moto-color-dot" style="background: #7a7a7a;" title="Grey" data-image="imagens/motos/Yamaha Factor DX 2026/grey/2.png"></span>
+              <span class="moto-color-dot" style="background: #1a1a1a;" title="Black" data-image="imagens/motos/Yamaha Factor DX 2026/black/2.webp"></span>
+              <span class="moto-color-dot active" style="background: #2c5aa0;" title="Blue" data-image="imagens/motos/Yamaha Factor DX 2026/blue/2-optimized.webp"></span>
+              <span class="moto-color-dot" style="background: #7a7a7a;" title="Grey" data-image="imagens/motos/Yamaha Factor DX 2026/grey/2.webp"></span>
             </div>
           </div>
 
@@ -291,7 +335,7 @@
           </div>
 
           <a href="factor-dx-2026.html" class="moto-card-btn">
-            <span>Ver Detalhes</span>
+            <span>Conheça Mais</span>
             <i class="fas fa-arrow-right"></i>
           </a>
         </div>
@@ -332,7 +376,7 @@
           </div>
 
           <a href="honda-fan-160.html" class="moto-card-btn">
-            <span>Ver Detalhes</span>
+            <span>Conheça Mais</span>
             <i class="fas fa-arrow-right"></i>
           </a>
         </div>
@@ -347,7 +391,7 @@
   <div class="section-title">Como Funciona</div>
   <div class="section-subtitle">Processo simples e rápido para você ter sua moto</div>
   <div class="steps">
-    <div class="step"><div class="step-num">1</div><div class="step-icon"><i class="fas fa-motorcycle"></i></div><h3>Escolha o Plano</h3><p>Selecione o plano que melhor se adapta ao seu perfil e necessidade entre nossas 3 opções.</p></div>
+    <div class="step"><div class="step-num">1</div><div class="step-icon"><i class="fas fa-motorcycle"></i></div><h3>Conheça Nossos Planos</h3><p>Oferecemos planos que se adaptam ao seu perfil e necessidade.</p></div>
     <div class="step"><div class="step-num">2</div><div class="step-icon"><i class="fas fa-mobile-alt"></i></div><h3>Cadastre-se Online</h3><p>Preencha seus dados de forma rápida e segura pelo site. Nossa equipe entra em contato em até 24h.</p></div>
     <div class="step"><div class="step-num">3</div><div class="step-icon"><i class="fas fa-key"></i></div><h3>Retire sua Moto</h3><p>Agendamos a visita em nossa loja e cuidamos de cada detalhe para você sair pilotando com tranquilidade.</p></div>
   </div>
@@ -356,8 +400,8 @@
 <!-- PLANOS -->
 <section id="planos">
   <div class="section-tag">Planos</div>
-  <div class="section-title">Escolha seu Plano</div>
-  <div class="section-subtitle">Realize o sonho da moto própria a partir de R$279/semana</div>
+  <div class="section-title">Nossos Planos</div>
+  <div class="section-subtitle">Oferecemos planos ideais para realizar seu sonho</div>
   <div class="plans-grid">
     <div class="plan-card">
       <div class="plan-body">
@@ -369,11 +413,26 @@
           <div class="plan-feat">Reposição de peças por desgaste</div>
           <div class="plan-feat">Sem limite de quilometragem</div>
         </div>
-        <a href="#catalogo" class="plan-cta">Ver Motos Disponíveis</a>
+        <a href="#cadastro" class="plan-cta">Quero Minha Moto Agora!</a>
       </div>
     </div>
     <div class="plan-card featured">
       <div class="plan-badge"><i class="fas fa-star"></i> Mais Popular</div>
+      <div class="plan-body">
+        <div class="plan-name">Plano Conect 2026</div><div class="plan-model">FAN 2026 ou Factor DX (Zero KM)</div>
+        <div class="plan-price"><sup>R$</sup>435</div><div class="plan-freq">/semana</div>
+        <div class="plan-caucao">Caução de R$999 <small>(até 12x no cartão)</small></div>
+        <div class="plan-features">
+          <div class="plan-feat">APP de Rastreio</div>
+          <div class="plan-feat">Guincho 24h</div>
+          <div class="plan-feat">Reposição de peças por desgaste</div>
+          <div class="plan-feat">Sem limite de quilometragem</div>
+          <div class="plan-feat">A moto será sua no final do contrato</div>
+        </div>
+        <a href="#cadastro" class="plan-cta">Quero Minha Moto Agora!</a>
+      </div>
+    </div>
+    <div class="plan-card">
       <div class="plan-body">
         <div class="plan-name">Plano Conect 2025</div><div class="plan-model">Modelo Factor (Ano 2025)</div>
         <div class="plan-price"><sup>R$</sup>399</div><div class="plan-freq">/semana</div>
@@ -383,24 +442,9 @@
           <div class="plan-feat">Guincho 24h</div>
           <div class="plan-feat">Reposição de peças por desgaste</div>
           <div class="plan-feat">Sem limite de quilometragem</div>
-          <div class="plan-feat">A moto é sua no final!</div>
+          <div class="plan-feat">A moto será sua no final do contrato</div>
         </div>
-        <a href="#catalogo" class="plan-cta">Ver Motos Disponíveis</a>
-      </div>
-    </div>
-    <div class="plan-card">
-      <div class="plan-body">
-        <div class="plan-name">Plano Conect 2024</div><div class="plan-model">Modelo Factor (Ano 2024)</div>
-        <div class="plan-price"><sup>R$</sup>365</div><div class="plan-freq">/semana</div>
-        <div class="plan-caucao">Caução de R$799 <small>(até 12x no cartão)</small></div>
-        <div class="plan-features">
-          <div class="plan-feat">APP de Rastreio</div>
-          <div class="plan-feat">Guincho 24h</div>
-          <div class="plan-feat">Reposição de peças por desgaste</div>
-          <div class="plan-feat">Sem limite de quilometragem</div>
-          <div class="plan-feat">A moto é sua no final!</div>
-        </div>
-        <a href="#catalogo" class="plan-cta">Ver Motos Disponíveis</a>
+        <a href="#cadastro" class="plan-cta">Quero Minha Moto Agora!</a>
       </div>
     </div>
   </div>
@@ -410,8 +454,8 @@
 <section id="beneficios">
   <div class="benefits-header">
     <div class="section-tag">Vantagens</div>
-    <h2 class="section-title">Por Que Escolher a Moto Agora?</h2>
-    <p class="section-subtitle">Muito mais que aluguel. Um pacote completo de benefícios para você.</p>
+    <h2 class="section-title">Nossas Vantagens</h2>
+    <p class="section-subtitle">Oferecemos muito mais que aluguel. Um pacote completo de benefícios.</p>
   </div>
 
   <div class="benefits-container">
@@ -731,11 +775,11 @@
 
 <!-- CTA BANNER -->
 <div class="cta-banner">
-  <h2>Seja o Próximo a<br>Realizar Seu Sonho!</h2>
-  <p>Moto zero KM de forma simples. Comece hoje mesmo.</p>
-  <a href="#catalogo" class="btn-dark">
+  <h2>Moto Zero KM<br>Disponível Agora!</h2>
+  <p>Oferecemos motos de forma simples. Conheça nossos planos.</p>
+  <a href="#cadastro" class="btn-dark">
     <i class="fas fa-motorcycle"></i>
-    Escolher Minha Moto
+    Quero Minha Moto Agora!
   </a>
 </div>
 
@@ -745,22 +789,22 @@
     <div class="app-download-grid">
       <div class="app-download-content">
         <div class="section-tag">Nosso App</div>
-        <h2 class="app-download-title">Gerencie Tudo pelo App</h2>
+        <h2 class="app-download-title">Aplicativo Moto Agora</h2>
         <p class="app-download-desc">
-          Acompanhe seus pagamentos, veja o status da sua moto, acesse boletos e fale diretamente conosco. Tudo na palma da sua mão!
+          Oferecemos um app completo para acompanhamento de pagamentos, status da moto, boletos e comunicação direta conosco. Tudo na palma da sua mão!
         </p>
         <div class="app-features">
           <div class="app-feature-item">
             <i class="fas fa-check-circle"></i>
-            <span>Acompanhe seus pagamentos</span>
+            <span>Acompanhamento de pagamentos</span>
           </div>
           <div class="app-feature-item">
             <i class="fas fa-check-circle"></i>
-            <span>Acesse boletos e comprovantes</span>
+            <span>Acesso a boletos e comprovantes</span>
           </div>
           <div class="app-feature-item">
             <i class="fas fa-check-circle"></i>
-            <span>Fale direto com nossa equipe</span>
+            <span>Comunicação direta com a equipe</span>
           </div>
         </div>
         <div class="app-download-badges">
@@ -781,88 +825,267 @@
         </div>
       </div>
       <div class="app-download-visual">
-        <img src="/imagens/assets/app-moto-agora.png" alt="App Moto Agora" class="app-screenshot" width="337" height="600" loading="lazy">
+        <img src="/imagens/assets/app-moto-agora.webp" alt="App Moto Agora" class="app-screenshot" width="337" height="600" loading="lazy">
       </div>
     </div>
   </div>
 </section>
 
 <!-- CADASTRO -->
+<style>
+  #cadastro { background: #F0F2F7; padding: 6rem 1.5rem; }
+  #cadastro .cadastro-container { max-width: 820px; margin: 0 auto; }
+  #cadastro .form-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(13,27,62,.12); margin-top: 3rem; }
+  #cadastro .form-card-header { background: linear-gradient(135deg, #0D1B3E 0%, #1a2951 100%); padding: 2rem 2.5rem; }
+  #cadastro .form-card-header h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.6rem; color: #F5C800; margin: 0; }
+  #cadastro .form-card-header p { color: rgba(255,255,255,.65); font-size: .875rem; margin: .5rem 0 0; }
+  #cadastro .form-card-body { padding: 2.5rem; }
+  #cadastro .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  @media(max-width: 600px) { #cadastro .form-grid { grid-template-columns: 1fr; } }
+  #cadastro .form-field { display: flex; flex-direction: column; gap: .5rem; }
+  #cadastro .form-field.full { grid-column: 1 / -1; }
+  #cadastro .form-field label { font-size: .8rem; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: .05em; }
+  #cadastro .form-field input, #cadastro .form-field select, #cadastro .form-field textarea { border: 1.5px solid #D1D5DB; border-radius: 10px; padding: .75rem 1rem; font-family: 'Barlow', sans-serif; font-size: .95rem; color: #1A1A2E; background: white; transition: all .2s; outline: none; width: 100%; }
+  #cadastro .form-field input:focus, #cadastro .form-field select:focus, #cadastro .form-field textarea:focus { border-color: #F5C800; box-shadow: 0 0 0 3px rgba(245,200,0,.18); }
+  #cadastro .form-field textarea { resize: vertical; min-height: 110px; }
+  #cadastro .file-upload-group { display: flex; align-items: center; gap: .75rem; border: 1.5px dashed #D1D5DB; border-radius: 10px; padding: .75rem 1rem; cursor: pointer; transition: border-color .2s; background: white; }
+  #cadastro .file-upload-group:hover { border-color: #F5C800; }
+  #cadastro .file-upload-group input[type="file"] { display: none; }
+  #cadastro .file-upload-btn { background: #0D1B3E; color: white; border: none; border-radius: 6px; padding: .5rem 1rem; font-size: .8rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: background .2s; }
+  #cadastro .file-upload-btn:hover { background: #1a2951; }
+  #cadastro .file-upload-name { font-size: .85rem; color: #6B7280; }
+  #cadastro .checkbox-field { display: flex; align-items: flex-start; gap: .75rem; margin: 1.5rem 0 .5rem; grid-column: 1 / -1; }
+  #cadastro .checkbox-field input[type="checkbox"] { width: 18px; height: 18px; accent-color: #F5C800; margin-top: 2px; flex-shrink: 0; cursor: pointer; }
+  #cadastro .checkbox-field span { font-size: .85rem; color: #6B7280; line-height: 1.5; }
+  #cadastro .form-divider { border: none; border-top: 1.5px solid #F0F2F7; margin: 1.5rem 0; grid-column: 1 / -1; }
+  #cadastro .btn-submit-primary { width: 100%; background: #F5C800; color: #0D1B3E; border: none; border-radius: 10px; padding: 1rem 2rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.05rem; cursor: pointer; margin-top: 1.75rem; letter-spacing: .02em; transition: all .15s; display: flex; align-items: center; justify-content: center; gap: .5rem; }
+  #cadastro .btn-submit-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,200,0,.35); }
+  #cadastro .btn-submit-primary:disabled { opacity: .6; cursor: not-allowed; }
+  #cadastro .btn-whatsapp-alt { width: 100%; background: #0D1B3E; color: white; border: none; border-radius: 10px; padding: .9rem 2rem; font-family: 'Barlow', sans-serif; font-weight: 500; font-size: .95rem; cursor: pointer; margin-top: .75rem; display: flex; align-items: center; justify-content: center; gap: .6rem; text-decoration: none; transition: opacity .2s; }
+  #cadastro .btn-whatsapp-alt:hover { opacity: .85; }
+  #cadastro .btn-whatsapp-alt .label-small { display: block; font-size: .75rem; color: rgba(255,255,255,.7); }
+  #cadastro .btn-whatsapp-alt .label-main { display: block; color: #F5C800; font-weight: 600; }
+  #cadastro .btn-planos { width: 100%; background: white; color: #0D1B3E; border: 2.5px solid #F5C800; border-radius: 10px; padding: .9rem 2rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; margin-top: .75rem; letter-spacing: .02em; transition: all .2s; }
+  #cadastro .btn-planos:hover { background: #F5C800; color: #0D1B3E; }
+  #cadastro .toast-notification { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(120px); background: #10B981; color: white; padding: 1rem 1.75rem; border-radius: 50px; font-weight: 500; font-size: .95rem; box-shadow: 0 8px 30px rgba(16,185,129,.3); transition: transform .35s cubic-bezier(.34,1.56,.64,1); z-index: 9999; white-space: nowrap; }
+  #cadastro .toast-notification.error { background: #EF4444; }
+  #cadastro .toast-notification.show { transform: translateX(-50%) translateY(0); }
+  #cadastro .spinner-icon { width: 18px; height: 18px; border: 2.5px solid rgba(13,27,62,.3); border-top-color: #0D1B3E; border-radius: 50%; animation: spin-anim .7s linear infinite; display: none; }
+  #cadastro .btn-submit-primary.loading .spinner-icon { display: block; }
+  #cadastro .btn-submit-primary.loading .btn-text { display: none; }
+  @keyframes spin-anim { to { transform: rotate(360deg); } }
+</style>
+
 <section id="cadastro">
-  <div style="text-align:center">
-    <div class="section-tag">Cadastro</div>
-    <div class="section-title">Faça seu Cadastro</div>
-    <div class="section-subtitle" style="margin:16px auto 0">Nossa equipe retorna em até 24h úteis</div>
+  <div class="cadastro-container">
+    <div style="text-align:center">
+      <div class="section-tag">Cadastro</div>
+      <div class="section-title">Formulário de Cadastro</div>
+      <div class="section-subtitle" style="margin:16px auto 0">Nossa equipe retorna em até 24h úteis</div>
+    </div>
+
+    <div class="form-card">
+      <div class="form-card-header">
+        <h3>🏍 Solicite sua Análise</h3>
+        <p>Preencha seus dados para análise do plano personalizado</p>
+      </div>
+
+      <div class="form-card-body">
+        <form id="leadForm">
+          <div class="form-grid">
+            <!-- Nome Completo -->
+            <div class="form-field">
+              <label for="nome">Nome Completo</label>
+              <input id="nome" name="nome_completo" type="text" placeholder="Seu nome completo" required>
+            </div>
+
+            <!-- WhatsApp -->
+            <div class="form-field">
+              <label for="whatsapp">WhatsApp</label>
+              <input id="whatsapp" name="whatsapp" type="tel" placeholder="(84) 99999-9999" required>
+            </div>
+
+            <!-- E-mail -->
+            <div class="form-field">
+              <label for="email">E-mail</label>
+              <input id="email" name="email" type="email" placeholder="seu@email.com" required>
+            </div>
+
+            <!-- CPF -->
+            <div class="form-field">
+              <label for="cpf">CPF</label>
+              <input id="cpf" name="cpf" type="text" placeholder="000.000.000-00" maxlength="14" required>
+            </div>
+
+            <!-- Plano de Interesse -->
+            <div class="form-field">
+              <label for="plano">Plano de Interesse</label>
+              <select id="plano" name="plano_interesse" required>
+                <option value="" disabled selected>Selecione um Plano</option>
+                <option value="Plano Flex">Plano Flex - R$279/semana</option>
+                <option value="Plano Conect 2026">Plano Conect 2026 - R$435/semana</option>
+                <option value="Plano Conect 2025">Plano Conect 2025 - R$399/semana</option>
+              </select>
+            </div>
+
+            <!-- Possui CNH A? -->
+            <div class="form-field">
+              <label for="cnh_a">Possui CNH A?</label>
+              <select id="cnh_a" name="possui_cnh_a" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="true">Sim</option>
+                <option value="false">Não</option>
+              </select>
+            </div>
+
+            <!-- CNH Upload -->
+            <div class="form-field">
+              <label>CNH (Print da CNH)</label>
+              <div class="file-upload-group" onclick="document.getElementById('cnh_file').click()">
+                <input type="file" id="cnh_file" name="cnh_file" accept="image/*,.pdf">
+                <button type="button" class="file-upload-btn">Escolher arquivo</button>
+                <span class="file-upload-name" id="cnh_name">Nenhum arquivo escolhido</span>
+              </div>
+            </div>
+
+            <!-- Comprovante de Residência Upload -->
+            <div class="form-field">
+              <label>Comprovante de Residência</label>
+              <div class="file-upload-group" onclick="document.getElementById('comp_file').click()">
+                <input type="file" id="comp_file" name="comprovante_residencial_file" accept="image/*,.pdf">
+                <button type="button" class="file-upload-btn">Escolher arquivo</button>
+                <span class="file-upload-name" id="comp_name">Nenhum arquivo escolhido</span>
+              </div>
+            </div>
+
+            <!-- Observações -->
+            <div class="form-field full">
+              <label for="obs">Observações</label>
+              <textarea id="obs" name="observacoes" placeholder="Conte-nos mais sobre sua necessidade ou dúvida..."></textarea>
+            </div>
+
+            <!-- Aceite de Contato -->
+            <div class="checkbox-field">
+              <input type="checkbox" id="aceite" name="aceite_contato" value="true" required>
+              <span>Aceito receber contato da Moto Agora via WhatsApp, e-mail ou telefone para apresentação dos planos e esclarecimento de dúvidas. *</span>
+            </div>
+
+            <hr class="form-divider">
+
+            <!-- Cupom de Desconto -->
+            <div class="form-field full">
+              <label for="cupom">Possui Cupom de Desconto?</label>
+              <input id="cupom" name="cupom_desconto" type="text" placeholder="Caso tenha, digite aqui">
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn-submit-primary" id="submitBtn">
+            <div class="spinner-icon"></div>
+            <span class="btn-text">Enviar Cadastro →</span>
+          </button>
+
+          <!-- WhatsApp Fallback -->
+          <a href="https://wa.me/5584996248216?text=Olá!%20Quero%20saber%20mais%20sobre%20os%20planos%20da%20Moto%20Agora!" target="_blank" class="btn-whatsapp-alt">
+            <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i>
+            <div style="text-align: left;">
+              <span class="label-small">Problemas ao enviar? Fale direto no WhatsApp:</span>
+              <span class="label-main">Clique aqui para WhatsApp</span>
+            </div>
+          </a>
+
+          <!-- Ver Planos -->
+          <button type="button" class="btn-planos" onclick="window.location.href='#planos'">Ver Todos os Planos</button>
+        </form>
+      </div>
+    </div>
   </div>
-  <div class="form-wrap">
-    <form id="leadForm">
-      <!-- Row 1: Nome + WhatsApp -->
-      <div class="form-row">
-        <div class="form-group">
-          <label>Nome Completo *</label>
-          <input type="text" name="nome" id="nome" placeholder="Seu nome completo" required>
-          <span class="form-error"></span>
-        </div>
-        <div class="form-group">
-          <label>WhatsApp *</label>
-          <input type="tel" name="telefone" id="telefone" placeholder="(84) 9 0000-0000" required>
-          <span class="form-error"></span>
-        </div>
-      </div>
 
-      <!-- Row 2: CPF + Email -->
-      <div class="form-row">
-        <div class="form-group">
-          <label>CPF *</label>
-          <input type="text" name="cpf" id="cpf" placeholder="000.000.000-00" required maxlength="14">
-          <span class="form-error"></span>
-        </div>
-        <div class="form-group">
-          <label>E-mail *</label>
-          <input type="email" name="email" id="email" placeholder="seuemail@exemplo.com" required>
-          <span class="form-error"></span>
-        </div>
-      </div>
-
-      <!-- Row 3: CNH + Moto -->
-      <div class="form-row">
-        <div class="form-group">
-          <label>Possui CNH Categoria A? *</label>
-          <select name="cnh" id="cnh" required>
-            <option value="">Selecione...</option>
-            <option value="sim">Sim, possuo CNH</option>
-            <option value="nao">Não possuo CNH</option>
-          </select>
-          <span class="form-error"></span>
-        </div>
-        <div class="form-group">
-          <label>Moto de Interesse *</label>
-          <select name="moto" id="moto" required>
-            <option value="">Selecione a moto...</option>
-            <option value="Yamaha Factor 150 2026">Yamaha Factor 150 2026</option>
-            <option value="Yamaha Factor 150 DX 2026">Yamaha Factor 150 DX 2026</option>
-            <option value="Honda CG 160 Fan 2026">Honda CG 160 Fan 2026</option>
-          </select>
-          <span class="form-error"></span>
-        </div>
-      </div>
-
-      <button type="submit" class="form-submit" id="submitBtn">
-        <span class="btn-text">Quero Minha Moto Agora! <i class="fas fa-arrow-right"></i></span>
-        <span class="btn-loading" style="display:none;">
-          <i class="fas fa-spinner fa-spin"></i> Enviando...
-        </span>
-      </button>
-
-      <div class="form-status" id="formStatus"></div>
-    </form>
-    <div class="form-or">ou fale direto</div>
-    <a href="https://wa.me/5584996248216" target="_blank" class="btn-whatsapp">
-      <i class="fab fa-whatsapp"></i>
-      Clique aqui para WhatsApp
-    </a>
-  </div>
+  <!-- Toast Notification -->
+  <div class="toast-notification" id="toast"></div>
 </section>
+
+<script>
+  // CPF Mask
+  document.getElementById('cpf').addEventListener('input', function(e) {
+    let v = e.target.value.replace(/\D/g,'');
+    v = v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');
+    e.target.value = v;
+  });
+
+  // WhatsApp Mask
+  document.getElementById('whatsapp').addEventListener('input', function(e) {
+    let v = e.target.value.replace(/\D/g,'');
+    if(v.length<=10) v=v.replace(/(\d{2})(\d{4})(\d{0,4})/,'($1) $2-$3');
+    else v=v.replace(/(\d{2})(\d{5})(\d{0,4})/,'($1) $2-$3');
+    e.target.value = v.trim().replace(/-$/,'');
+  });
+
+  // File Upload Names
+  document.getElementById('cnh_file').addEventListener('change', function() {
+    document.getElementById('cnh_name').textContent = this.files[0]?.name || 'Nenhum arquivo escolhido';
+  });
+  document.getElementById('comp_file').addEventListener('change', function() {
+    document.getElementById('comp_name').textContent = this.files[0]?.name || 'Nenhum arquivo escolhido';
+  });
+
+  // Toast Notification Function
+  function showToast(msg, type='success') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast-notification ' + type;
+    setTimeout(()=>t.classList.add('show'), 10);
+    setTimeout(()=>t.classList.remove('show'), 4000);
+  }
+
+  // Form Submit with Webhook
+  document.getElementById('leadForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.classList.add('loading');
+    btn.disabled = true;
+
+    const formData = new FormData(this);
+    const webhookData = new FormData();
+
+    // Add text fields
+    ['nome_completo','whatsapp','email','cpf','plano_interesse','observacoes','cupom_desconto'].forEach(k => {
+      if(formData.get(k)) webhookData.append(k, formData.get(k));
+    });
+
+    // Add boolean fields
+    webhookData.append('possui_cnh_a', formData.get('possui_cnh_a') === 'true');
+    webhookData.append('aceite_contato', formData.get('aceite_contato') === 'true');
+
+    // Add files
+    const cnhFile = document.getElementById('cnh_file').files[0];
+    const compFile = document.getElementById('comp_file').files[0];
+    if(cnhFile) webhookData.append('cnh_file', cnhFile);
+    if(compFile) webhookData.append('comprovante_residencial_file', compFile);
+
+    try {
+      const res = await fetch('https://n8n.cainanmaia.com.br/webhook/cc09ef7f-0ee1-446b-b4c4-bb835c4ab621', {
+        method: 'POST',
+        body: webhookData
+      });
+
+      if(res.ok || res.status===200) {
+        showToast('✅ Cadastro enviado com sucesso!');
+        this.reset();
+        document.getElementById('cnh_name').textContent = 'Nenhum arquivo escolhido';
+        document.getElementById('comp_name').textContent = 'Nenhum arquivo escolhido';
+      } else {
+        throw new Error('HTTP ' + res.status);
+      }
+    } catch(err) {
+      console.error('Erro ao enviar:', err);
+      showToast('❌ Erro ao enviar. Tente novamente.', 'error');
+    } finally {
+      btn.classList.remove('loading');
+      btn.disabled = false;
+    }
+  });
+</script>
 
 <!-- FAQ -->
 <section id="faq">
@@ -904,10 +1127,10 @@
       <!-- Coluna 1: Logo e Descrição -->
       <div class="footer-col footer-about">
         <div class="footer-logo">
-          <img src="imagens/assets/Logo-amarela-optimized.png" alt="Moto Agora" width="200" height="73">
+          <img src="imagens/assets/Logo-amarela-optimized.webp" alt="Moto Agora" width="200" height="73">
         </div>
         <p class="footer-desc">
-          Realize o sonho da moto própria com parcelas semanais que cabem no seu bolso. Processo simples, não consultamos SPC.
+          Oferecemos motos com parcelas semanais que cabem no seu bolso. Processo simples, não consultamos SPC.
         </p>
         <div class="footer-social">
           <a href="https://wa.me/5584996248216" target="_blank" aria-label="WhatsApp">
@@ -1028,15 +1251,6 @@
       if (!isOpen) item.classList.add('open');
     });
   });
-
-  // Form -> WhatsApp
-  document.getElementById('leadForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const nome = this.nome.value.trim();
-    const tel = this.telefone.value.trim();
-    const msg = encodeURIComponent(`Olá! Me chamo *${nome}* e tenho interesse em um plano da Moto Agora. Meu WhatsApp é ${tel}`);
-    window.open(`https://wa.me/5584996248216?text=${msg}`, '_blank');
-  });
 </script>
 
 <!-- PARALLAX SCRIPT -->
@@ -1050,7 +1264,7 @@
 
   // Lista de imagens críticas para preload (above the fold)
   const criticalImages = [
-    'imagens/assets/Logo-amarela-e-azul-optimized.png'
+    'imagens/assets/Logo-amarela-e-azul-optimized.webp'
   ];
 
   // Imagens para preload em background (resto da galeria)
@@ -1533,6 +1747,53 @@ document.addEventListener('click', function(e) {
 
 <!-- Form Handler Script -->
 <script src="formHandler.min.js" defer></script>
+
+<!-- Copy Email Script -->
+<script>
+function copyEmailToClipboard(event) {
+  event.preventDefault();
+  const email = 'contato@motoagora.com.br';
+
+  // Copiar para clipboard
+  navigator.clipboard.writeText(email).then(() => {
+    showCopyToast();
+  }).catch(() => {
+    // Fallback para navegadores antigos
+    const textarea = document.createElement('textarea');
+    textarea.value = email;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    showCopyToast();
+  });
+}
+
+function showCopyToast() {
+  // Remover toast existente se houver
+  const existingToast = document.querySelector('.copy-toast');
+  if (existingToast) {
+    existingToast.remove();
+  }
+
+  // Criar toast
+  const toast = document.createElement('div');
+  toast.className = 'copy-toast';
+  toast.innerHTML = '<i class="fas fa-check-circle"></i> Email copiado!';
+  document.body.appendChild(toast);
+
+  // Mostrar
+  setTimeout(() => toast.classList.add('show'), 10);
+
+  // Esconder após 3 segundos
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+</script>
 
 </body>
 </html>

@@ -15,12 +15,12 @@
   <meta property="og:type" content="product">
   <meta property="og:title" content="Honda CG 160 Fan 2026 – Moto Agora | Aluguel de Motos em Natal RN">
   <meta property="og:description" content="Conheça a Honda CG 160 Fan disponível para aluguel. Zero km, pronta para uso imediato, com manutenção preventiva e seguro inclusos.">
-  <meta property="og:image" content="https://www.motoagora.com.br/imagens/motos/Honda%20fan%20160/hero-image.png">
+  <meta property="og:image" content="https://www.motoagora.com.br/imagens/motos/Honda%20fan%20160/hero-image.webp">
   <meta property="og:url" content="https://www.motoagora.com.br/honda-fan-160.html">
   <meta property="og:site_name" content="Moto Agora">
 
-  <link rel="icon" type="image/png" href="imagens/assets/favicon.png">
-  <link rel="apple-touch-icon" href="imagens/assets/favicon.png">
+  <link rel="icon" type="image/webp" href="imagens/assets/favicon.webp">
+  <link rel="apple-touch-icon" href="imagens/assets/favicon.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -37,6 +37,51 @@
       box-shadow: 0 8px 16px rgba(0,0,0,0.1);
     }
   </style>
+
+  <!-- Toast notification para copiar email -->
+  <style>
+  .copy-toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, #0066cc 0%, #004c99 100%);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 102, 204, 0.3);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: 99999;
+  }
+
+  .copy-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .copy-toast i {
+    font-size: 18px;
+  }
+
+  @media (max-width: 768px) {
+    .copy-toast {
+      bottom: 20px;
+      right: 20px;
+      left: 20px;
+      font-size: 14px;
+      padding: 14px 20px;
+    }
+  }
+  </style>
 </head>
 <body data-moto="Honda CG 160 Fan 2026">
 
@@ -44,7 +89,7 @@
 <nav>
   <div class="nav-logo">
     <a href="index.html">
-      <img src="imagens/assets/Logo-amarela-e-azul-optimized.png" alt="Moto Agora" width="165" height="60">
+      <img src="imagens/assets/Logo-amarela-e-azul-optimized.webp" alt="Moto Agora" width="165" height="60">
     </a>
   </div>
   <ul class="nav-links">
@@ -54,7 +99,7 @@
     <li><a href="index.html#como-funciona">Como Funciona</a></li>
     <li><a href="index.html#contato">Contato</a></li>
     <li><a href="https://motoagora.com.br/portal/" target="_blank">Portal do Cliente</a></li>
-    <li><a href="mailto:contato@motoagora.com.br?subject=Trabalhe%20Conosco">Trabalhe Conosco</a></li>
+    <li><a href="#" onclick="copyEmailToClipboard(event)">Trabalhe Conosco</a></li>
   </ul>
   <a href="#cadastro" class="nav-cta">Quero Minha Moto <i class="fas fa-arrow-right"></i></a>
   <div class="hamburger">
@@ -82,7 +127,7 @@
 
 <!-- HERO IMAGE -->
 <section class="hero-image-section">
-  <img src="imagens/motos/Honda fan 160/hero-image.png" alt="Honda CG 160 Fan 2026" width="1200" height="800">
+  <img src="imagens/motos/Honda fan 160/hero-image.webp" alt="Honda CG 160 Fan 2026" width="1200" height="800">
 </section>
 
 <!-- GALERIA DE CORES -->
@@ -224,7 +269,7 @@
 <section id="planos">
   <div class="section-tag">Plano Disponível</div>
   <div class="section-title">Adquira Agora</div>
-  <div class="section-subtitle">Realize o sonho da moto própria por R$435/semana</div>
+  <div class="section-subtitle">Oferecemos planos ideais para realizar seu sonho</div>
   <div class="plans-single-container">
     <div class="plan-card featured">
       <div class="plan-badge"><i class="fas fa-star"></i> Disponível Agora</div>
@@ -239,7 +284,7 @@
           <div class="plan-feat">Guincho 24h</div>
           <div class="plan-feat">Reposição de peças por desgaste</div>
           <div class="plan-feat">Sem limite de quilometragem</div>
-          <div class="plan-feat">A moto é sua no final!</div>
+          <div class="plan-feat">A moto será sua no final do contrato</div>
         </div>
         <a href="javascript:void(0)" class="plan-cta" data-plan="Plano Connect" data-price="R$435/semana" onclick="openSubscribeModal(this)">Quero Minha Moto Agora!</a>
       </div>
@@ -266,10 +311,10 @@
       <!-- Coluna 1: Logo e Descrição -->
       <div class="footer-col footer-about">
         <div class="footer-logo">
-          <img src="imagens/assets/Logo-amarela-optimized.png" alt="Moto Agora" width="200" height="73">
+          <img src="imagens/assets/Logo-amarela-optimized.webp" alt="Moto Agora" width="200" height="73">
         </div>
         <p class="footer-desc">
-          Realize o sonho da moto própria com parcelas semanais que cabem no seu bolso. Sem burocracia, sem consulta ao SPC.
+          Oferecemos motos com parcelas semanais que cabem no seu bolso. Sem burocracia, sem consulta ao SPC.
         </p>
         <div class="footer-social">
           <a href="https://wa.me/5584996248216" target="_blank" aria-label="WhatsApp">
@@ -438,7 +483,7 @@
   "name": "Honda CG 160 Fan 2026",
   "description": "Honda CG 160 Fan 2026 - líder em vendas e economia para aluguel semanal. Motor 162cc, até 45km/L, baixa manutenção.",
   "image": [
-    "https://www.motoagora.com.br/imagens/motos/Honda%20fan%20160/hero-image.png",
+    "https://www.motoagora.com.br/imagens/motos/Honda%20fan%20160/hero-image.webp",
     "https://www.motoagora.com.br/imagens/motos/Honda%20fan%20160/Imagem-Home-Honda-CG-160-Fan-Prata-Metálico_0.webp"
   ],
   "brand": {
@@ -642,6 +687,53 @@
 
 <!-- Form Handler Script -->
 <script src="formHandler.min.js" defer></script>
+
+<!-- Copy Email Script -->
+<script>
+function copyEmailToClipboard(event) {
+  event.preventDefault();
+  const email = 'contato@motoagora.com.br';
+
+  // Copiar para clipboard
+  navigator.clipboard.writeText(email).then(() => {
+    showCopyToast();
+  }).catch(() => {
+    // Fallback para navegadores antigos
+    const textarea = document.createElement('textarea');
+    textarea.value = email;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    showCopyToast();
+  });
+}
+
+function showCopyToast() {
+  // Remover toast existente se houver
+  const existingToast = document.querySelector('.copy-toast');
+  if (existingToast) {
+    existingToast.remove();
+  }
+
+  // Criar toast
+  const toast = document.createElement('div');
+  toast.className = 'copy-toast';
+  toast.innerHTML = '<i class="fas fa-check-circle"></i> Email copiado!';
+  document.body.appendChild(toast);
+
+  // Mostrar
+  setTimeout(() => toast.classList.add('show'), 10);
+
+  // Esconder após 3 segundos
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+</script>
 
 </body>
 </html>

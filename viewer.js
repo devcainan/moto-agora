@@ -40,7 +40,7 @@
       const img = document.createElement('img');
       img.draggable = false;
       img.className = 'v360-frame';
-      img.src = `imagens/motos/Yamaha Factor 2026/${folder}/${i + 1}.png`;
+      img.src = `imagens/motos/Yamaha Factor 2026/${folder}/${i + 1}.webp`;
       img.alt = `Yamaha Factor 150 - ${folder} - ângulo ${i + 1}`;
       img.width = 901;
       img.height = 600;
