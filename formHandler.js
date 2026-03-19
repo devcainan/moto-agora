@@ -12,7 +12,7 @@
 
   // Configuration
   const CONFIG = {
-    webhookURL: 'https://n8n.cainanmaia.com.br/webhook/cc09ef7f-0ee1-446b-b4c4-bb835c4ab621',
+    webhookURL: 'https://motoagora-n8n.ugsmqj.easypanel.host/webhook/cc09ef7f-0ee1-446b-b4c4-bb835c4ab621',
     whatsappNumber: '5584996248216',
     timeout: 5000 // 5 seconds
   };

@@ -940,9 +940,9 @@
 
             <!-- CNH Upload -->
             <div class="form-field">
-              <label>CNH (Print da CNH)</label>
+              <label>CNH (Print da CNH) <span style="color: #ff4444;">*</span></label>
               <div class="file-upload-group" onclick="document.getElementById('cnh_file').click()">
-                <input type="file" id="cnh_file" name="cnh_file" accept="image/*,.pdf">
+                <input type="file" id="cnh_file" name="cnh_file" accept="image/*,.pdf" required>
                 <button type="button" class="file-upload-btn">Escolher arquivo</button>
                 <span class="file-upload-name" id="cnh_name">Nenhum arquivo escolhido</span>
               </div>
@@ -950,9 +950,9 @@
 
             <!-- Comprovante de Residência Upload -->
             <div class="form-field">
-              <label>Comprovante de Residência</label>
+              <label>Comprovante de Residência <span style="color: #ff4444;">*</span></label>
               <div class="file-upload-group" onclick="document.getElementById('comp_file').click()">
-                <input type="file" id="comp_file" name="comprovante_residencial_file" accept="image/*,.pdf">
+                <input type="file" id="comp_file" name="comprovante_residencial_file" accept="image/*,.pdf" required>
                 <button type="button" class="file-upload-btn">Escolher arquivo</button>
                 <span class="file-upload-name" id="comp_name">Nenhum arquivo escolhido</span>
               </div>
@@ -1021,12 +1021,33 @@
     e.target.value = v.trim().replace(/-$/,'');
   });
 
-  // File Upload Names
+  // File Upload Names with Visual Feedback
   document.getElementById('cnh_file').addEventListener('change', function() {
-    document.getElementById('cnh_name').textContent = this.files[0]?.name || 'Nenhum arquivo escolhido';
+    const fileName = this.files[0]?.name || 'Nenhum arquivo escolhido';
+    const nameSpan = document.getElementById('cnh_name');
+    nameSpan.textContent = fileName;
+
+    if (this.files[0]) {
+      nameSpan.style.color = '#4CAF50';
+      nameSpan.style.fontWeight = 'bold';
+    } else {
+      nameSpan.style.color = '';
+      nameSpan.style.fontWeight = '';
+    }
   });
+
   document.getElementById('comp_file').addEventListener('change', function() {
-    document.getElementById('comp_name').textContent = this.files[0]?.name || 'Nenhum arquivo escolhido';
+    const fileName = this.files[0]?.name || 'Nenhum arquivo escolhido';
+    const nameSpan = document.getElementById('comp_name');
+    nameSpan.textContent = fileName;
+
+    if (this.files[0]) {
+      nameSpan.style.color = '#4CAF50';
+      nameSpan.style.fontWeight = 'bold';
+    } else {
+      nameSpan.style.color = '';
+      nameSpan.style.fontWeight = '';
+    }
   });
 
   // Toast Notification Function
@@ -1041,6 +1062,23 @@
   // Form Submit with Webhook
   document.getElementById('leadForm').addEventListener('submit', async function(e) {
     e.preventDefault();
+
+    // Validate file uploads before submission
+    const cnhFile = document.getElementById('cnh_file').files[0];
+    const compFile = document.getElementById('comp_file').files[0];
+
+    if (!cnhFile) {
+      showToast('⚠️ Por favor, anexe uma foto da sua CNH', 'error');
+      document.getElementById('cnh_file').focus();
+      return;
+    }
+
+    if (!compFile) {
+      showToast('⚠️ Por favor, anexe seu comprovante de residência', 'error');
+      document.getElementById('comp_file').focus();
+      return;
+    }
+
     const btn = document.getElementById('submitBtn');
     btn.classList.add('loading');
     btn.disabled = true;
@@ -1057,14 +1095,12 @@
     webhookData.append('possui_cnh_a', formData.get('possui_cnh_a') === 'true');
     webhookData.append('aceite_contato', formData.get('aceite_contato') === 'true');
 
-    // Add files
-    const cnhFile = document.getElementById('cnh_file').files[0];
-    const compFile = document.getElementById('comp_file').files[0];
-    if(cnhFile) webhookData.append('cnh_file', cnhFile);
-    if(compFile) webhookData.append('comprovante_residencial_file', compFile);
+    // Add files (already validated, guaranteed to exist)
+    webhookData.append('cnh_file', cnhFile);
+    webhookData.append('comprovante_residencial_file', compFile);
 
     try {
-      const res = await fetch('https://n8n.cainanmaia.com.br/webhook/cc09ef7f-0ee1-446b-b4c4-bb835c4ab621', {
+      const res = await fetch('https://motoagora-n8n.ugsmqj.easypanel.host/webhook/cc09ef7f-0ee1-446b-b4c4-bb835c4ab621', {
         method: 'POST',
         body: webhookData
       });
