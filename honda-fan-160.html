@@ -32,8 +32,8 @@
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
   <!-- Main CSS - Async Load -->
-  <link rel="preload" href="styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="styles.min.css"></noscript>
+  <link rel="preload" href="styles.min.css?v=2" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="styles.min.css?v=2"></noscript>
   <style>
     .color-card:hover {
       border-color: #111827 !important;
@@ -635,62 +635,163 @@
       <input type="hidden" name="moto" id="formMoto" value="">
       <input type="hidden" name="plano" id="formPlano" value="">
 
-      <!-- Row 1: Nome + WhatsApp -->
+      <!-- Grid 2 colunas -->
       <div class="form-row">
         <div class="form-group">
           <label>Nome Completo *</label>
-          <input type="text" name="nome" id="nome" placeholder="Seu nome completo" required>
-          <span class="form-error"></span>
+          <input type="text" name="nome_completo" id="subscribe_nome" placeholder="Seu nome completo" required>
         </div>
         <div class="form-group">
           <label>WhatsApp *</label>
-          <input type="tel" name="telefone" id="telefone" placeholder="(84) 9 0000-0000" required>
-          <span class="form-error"></span>
+          <input type="tel" name="whatsapp" id="subscribe_whatsapp" placeholder="(84) 99999-9999" required>
         </div>
       </div>
 
-      <!-- Row 2: CPF + Email -->
       <div class="form-row">
+        <div class="form-group">
+          <label>E-mail</label>
+          <input type="email" name="email" id="subscribe_email" placeholder="seu@email.com">
+        </div>
         <div class="form-group">
           <label>CPF *</label>
-          <input type="text" name="cpf" id="cpf" placeholder="000.000.000-00" required maxlength="14">
-          <span class="form-error"></span>
-        </div>
-        <div class="form-group">
-          <label>E-mail *</label>
-          <input type="email" name="email" id="email" placeholder="seuemail@exemplo.com" required>
-          <span class="form-error"></span>
+          <input type="text" name="cpf" id="subscribe_cpf" placeholder="000.000.000-00" maxlength="14" required>
         </div>
       </div>
 
-      <!-- Row 3: CNH -->
       <div class="form-row">
         <div class="form-group">
-          <label>Possui CNH Categoria A? *</label>
-          <select name="cnh" id="cnh" required>
-            <option value="">Selecione...</option>
-            <option value="sim">Sim, possuo CNH</option>
-            <option value="nao">Não possuo CNH</option>
+          <label>Plano de Interesse *</label>
+          <select name="plano_interesse" id="subscribe_plano" required>
+            <option value="" disabled selected>Selecione um Plano</option>
+            <option value="Plano Flex">Plano Flex - R$279/semana</option>
+            <option value="Plano Conect 2026">Plano Conect 2026 - R$435/semana</option>
+            <option value="Plano Conect 2025">Plano Conect 2025 - R$399/semana</option>
           </select>
-          <span class="form-error"></span>
+        </div>
+        <div class="form-group">
+          <label>Possui CNH A? *</label>
+          <select name="possui_cnh_a" id="subscribe_cnh_a" required>
+            <option value="" disabled selected>Selecione</option>
+            <option value="true">Sim</option>
+            <option value="false">Não</option>
+          </select>
         </div>
       </div>
 
-      <button type="submit" class="modal-submit">
-        <i class="fab fa-whatsapp"></i>
-        <span class="btn-text">Enviar e Falar no WhatsApp</span>
-        <span class="btn-loading" style="display:none;">
-          <i class="fas fa-spinner fa-spin"></i> Enviando...
-        </span>
-      </button>
+      <!-- Uploads -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>CNH (Print da CNH)</label>
+          <div class="file-upload-wrapper">
+            <input type="file" id="subscribe_cnh_file" name="cnh_file" accept="image/*,.pdf" style="display:none">
+            <button type="button" class="file-upload-trigger" onclick="document.getElementById('subscribe_cnh_file').click()">
+              <i class="fas fa-upload"></i> Escolher arquivo
+            </button>
+            <span class="file-upload-name" id="subscribe_cnh_name">Nenhum arquivo escolhido</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Comprovante de Residência</label>
+          <div class="file-upload-wrapper">
+            <input type="file" id="subscribe_comp_file" name="comprovante_residencial_file" accept="image/*,.pdf" style="display:none">
+            <button type="button" class="file-upload-trigger" onclick="document.getElementById('subscribe_comp_file').click()">
+              <i class="fas fa-upload"></i> Escolher arquivo
+            </button>
+            <span class="file-upload-name" id="subscribe_comp_name">Nenhum arquivo escolhido</span>
+          </div>
+        </div>
+      </div>
 
-      <div class="form-status" id="formStatus"></div>
+      <!-- Mensagem informativa -->
+      <div class="form-info-message">
+        <i class="fas fa-info-circle"></i>
+        <span>Enviar esses documentos agiliza o seu processo de aprovação</span>
+      </div>
+
+      <!-- Observações -->
+      <div class="form-group" style="grid-column: 1 / -1;">
+        <label>Observações</label>
+        <textarea name="observacoes" id="subscribe_obs" placeholder="Conte-nos mais sobre sua necessidade ou dúvida..." rows="3"></textarea>
+      </div>
+
+      <!-- Aceite -->
+      <div class="form-checkbox-group">
+        <input type="checkbox" name="aceite_contato" id="subscribe_aceite" value="true" required>
+        <span>Aceito receber contato da Moto Agora via WhatsApp, e-mail ou telefone para apresentação dos planos e esclarecimento de dúvidas. *</span>
+      </div>
+
+      <!-- Cupom -->
+      <div class="form-group" style="grid-column: 1 / -1;">
+        <label>Possui Cupom de Desconto?</label>
+        <input type="text" name="cupom_desconto" id="subscribe_cupom" placeholder="Caso tenha, digite aqui">
+      </div>
+
+      <button type="submit" class="modal-submit-primary">
+        <span class="spinner-icon"></span>
+        <span class="btn-text">Enviar Cadastro →</span>
+      </button>
     </form>
   </div>
 </div>
 
-<!-- Form Handler Script -->
-<script src="formHandler.min.js" defer></script>
+<!-- Toast para subscribeModal -->
+<div class="toast-notification" id="subscribeToast"></div>
+
+<!-- Lead Form Handler Script -->
+<script src="leadFormHandler.js" defer></script>
+<script>
+  // Funções de controle do modal
+  function openSubscribeModal(planButton) {
+    const modal = document.getElementById('subscribeModal');
+    const form = document.getElementById('subscribeForm');
+
+    if (planButton && planButton.dataset) {
+      document.getElementById('formPlano').value = `${planButton.dataset.plan} - ${planButton.dataset.price}`;
+      document.querySelector('#subscribeModal .modal-subtitle').textContent = `Plano selecionado: ${planButton.dataset.plan}`;
+    }
+
+    const motoName = document.body.getAttribute('data-moto') || 'Honda Fan 160';
+    document.getElementById('formMoto').value = motoName;
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSubscribeModal() {
+    const modal = document.getElementById('subscribeModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+    document.getElementById('subscribeForm').reset();
+
+    // Reset file names
+    document.getElementById('subscribe_cnh_name').textContent = 'Nenhum arquivo escolhido';
+    document.getElementById('subscribe_comp_name').textContent = 'Nenhum arquivo escolhido';
+  }
+
+  // Fechar com ESC ou clique fora
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.getElementById('subscribeModal').classList.contains('active')) {
+      closeSubscribeModal();
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (e.target.id === 'subscribeModal') {
+      closeSubscribeModal();
+    }
+  });
+
+  // Inicializar formulário
+  document.addEventListener('DOMContentLoaded', function() {
+    initLeadForm('subscribeForm', {
+      toastId: 'subscribeToast',
+      fileInputs: [
+        { input: 'subscribe_cnh_file', label: 'subscribe_cnh_name' },
+        { input: 'subscribe_comp_file', label: 'subscribe_comp_name' }
+      ]
+    });
+  });
+</script>
 
 <!-- Copy Email Script -->
 <script>

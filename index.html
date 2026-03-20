@@ -47,8 +47,8 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
 <!-- Main CSS - Async Load -->
-<link rel="preload" href="styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="styles.min.css"></noscript>
+<link rel="preload" href="styles.min.css?v=2" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="styles.min.css?v=2"></noscript>
 <!-- Font Awesome - Async Load -->
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
@@ -911,7 +911,7 @@
             <!-- E-mail -->
             <div class="form-field">
               <label for="email">E-mail</label>
-              <input id="email" name="email" type="email" placeholder="seu@email.com" required>
+              <input id="email" name="email" type="email" placeholder="seu@email.com">
             </div>
 
             <!-- CPF -->
@@ -943,9 +943,9 @@
 
             <!-- CNH Upload -->
             <div class="form-field">
-              <label>CNH (Print da CNH) <span style="color: #ff4444;">*</span></label>
+              <label>CNH (Print da CNH)</label>
               <div class="file-upload-group" onclick="document.getElementById('cnh_file').click()">
-                <input type="file" id="cnh_file" name="cnh_file" accept="image/*,.pdf" required>
+                <input type="file" id="cnh_file" name="cnh_file" accept="image/*,.pdf">
                 <button type="button" class="file-upload-btn">Escolher arquivo</button>
                 <span class="file-upload-name" id="cnh_name">Nenhum arquivo escolhido</span>
               </div>
@@ -953,12 +953,20 @@
 
             <!-- Comprovante de Residência Upload -->
             <div class="form-field">
-              <label>Comprovante de Residência <span style="color: #ff4444;">*</span></label>
+              <label>Comprovante de Residência</label>
               <div class="file-upload-group" onclick="document.getElementById('comp_file').click()">
-                <input type="file" id="comp_file" name="comprovante_residencial_file" accept="image/*,.pdf" required>
+                <input type="file" id="comp_file" name="comprovante_residencial_file" accept="image/*,.pdf">
                 <button type="button" class="file-upload-btn">Escolher arquivo</button>
                 <span class="file-upload-name" id="comp_name">Nenhum arquivo escolhido</span>
               </div>
+            </div>
+
+            <!-- Info Message -->
+            <div class="form-field full">
+              <p style="font-size: .85rem; color: #6B7280; margin: 0; padding: .75rem 1rem; background: #F0F7FF; border-left: 3px solid #0066CC; border-radius: 8px;">
+                <i class="fas fa-info-circle" style="color: #0066CC; margin-right: 6px;"></i>
+                Enviar esses documentos agiliza o seu processo de aprovação
+              </p>
             </div>
 
             <!-- Observações -->
@@ -1008,121 +1016,10 @@
   <div class="toast-notification" id="toast"></div>
 </section>
 
+<script src="leadFormHandler.js" defer></script>
 <script>
-  // CPF Mask
-  document.getElementById('cpf').addEventListener('input', function(e) {
-    let v = e.target.value.replace(/\D/g,'');
-    v = v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');
-    e.target.value = v;
-  });
-
-  // WhatsApp Mask
-  document.getElementById('whatsapp').addEventListener('input', function(e) {
-    let v = e.target.value.replace(/\D/g,'');
-    if(v.length<=10) v=v.replace(/(\d{2})(\d{4})(\d{0,4})/,'($1) $2-$3');
-    else v=v.replace(/(\d{2})(\d{5})(\d{0,4})/,'($1) $2-$3');
-    e.target.value = v.trim().replace(/-$/,'');
-  });
-
-  // File Upload Names with Visual Feedback
-  document.getElementById('cnh_file').addEventListener('change', function() {
-    const fileName = this.files[0]?.name || 'Nenhum arquivo escolhido';
-    const nameSpan = document.getElementById('cnh_name');
-    nameSpan.textContent = fileName;
-
-    if (this.files[0]) {
-      nameSpan.style.color = '#4CAF50';
-      nameSpan.style.fontWeight = 'bold';
-    } else {
-      nameSpan.style.color = '';
-      nameSpan.style.fontWeight = '';
-    }
-  });
-
-  document.getElementById('comp_file').addEventListener('change', function() {
-    const fileName = this.files[0]?.name || 'Nenhum arquivo escolhido';
-    const nameSpan = document.getElementById('comp_name');
-    nameSpan.textContent = fileName;
-
-    if (this.files[0]) {
-      nameSpan.style.color = '#4CAF50';
-      nameSpan.style.fontWeight = 'bold';
-    } else {
-      nameSpan.style.color = '';
-      nameSpan.style.fontWeight = '';
-    }
-  });
-
-  // Toast Notification Function
-  function showToast(msg, type='success') {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.className = 'toast-notification ' + type;
-    setTimeout(()=>t.classList.add('show'), 10);
-    setTimeout(()=>t.classList.remove('show'), 4000);
-  }
-
-  // Form Submit with Webhook
-  document.getElementById('leadForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-
-    // Validate file uploads before submission
-    const cnhFile = document.getElementById('cnh_file').files[0];
-    const compFile = document.getElementById('comp_file').files[0];
-
-    if (!cnhFile) {
-      showToast('⚠️ Por favor, anexe uma foto da sua CNH', 'error');
-      document.getElementById('cnh_file').focus();
-      return;
-    }
-
-    if (!compFile) {
-      showToast('⚠️ Por favor, anexe seu comprovante de residência', 'error');
-      document.getElementById('comp_file').focus();
-      return;
-    }
-
-    const btn = document.getElementById('submitBtn');
-    btn.classList.add('loading');
-    btn.disabled = true;
-
-    const formData = new FormData(this);
-    const webhookData = new FormData();
-
-    // Add text fields
-    ['nome_completo','whatsapp','email','cpf','plano_interesse','observacoes','cupom_desconto'].forEach(k => {
-      if(formData.get(k)) webhookData.append(k, formData.get(k));
-    });
-
-    // Add boolean fields
-    webhookData.append('possui_cnh_a', formData.get('possui_cnh_a') === 'true');
-    webhookData.append('aceite_contato', formData.get('aceite_contato') === 'true');
-
-    // Add files (already validated, guaranteed to exist)
-    webhookData.append('cnh_file', cnhFile);
-    webhookData.append('comprovante_residencial_file', compFile);
-
-    try {
-      const res = await fetch('https://motoagora-n8n.ugsmqj.easypanel.host/webhook/cc09ef7f-0ee1-446b-b4c4-bb835c4ab621', {
-        method: 'POST',
-        body: webhookData
-      });
-
-      if(res.ok || res.status===200) {
-        showToast('✅ Cadastro enviado com sucesso!');
-        this.reset();
-        document.getElementById('cnh_name').textContent = 'Nenhum arquivo escolhido';
-        document.getElementById('comp_name').textContent = 'Nenhum arquivo escolhido';
-      } else {
-        throw new Error('HTTP ' + res.status);
-      }
-    } catch(err) {
-      console.error('Erro ao enviar:', err);
-      showToast('❌ Erro ao enviar. Tente novamente.', 'error');
-    } finally {
-      btn.classList.remove('loading');
-      btn.disabled = false;
-    }
+  document.addEventListener('DOMContentLoaded', function() {
+    initLeadForm('leadForm');
   });
 </script>
 
@@ -1610,28 +1507,112 @@ document.addEventListener('click', function(e) {
     <button class="modal-close" onclick="closeInteresseModal()">&times;</button>
     <div class="modal-header">
       <h3 class="modal-title">Tenho Interesse!</h3>
-      <p class="modal-subtitle">Preencha seus dados e entraremos em contato</p>
+      <p class="modal-subtitle">Preencha seus dados para análise do plano</p>
     </div>
     <form id="interesseForm" class="modal-form">
-      <div class="form-group">
-        <label for="nome">Nome Completo</label>
-        <input type="text" id="nome" name="nome" required placeholder="Seu nome completo">
+      <input type="hidden" name="origem" id="formOrigem" value="Modal Interesse">
+
+      <!-- Grid 2 colunas -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nome Completo *</label>
+          <input type="text" name="nome_completo" id="interesse_nome" placeholder="Seu nome completo" required>
+        </div>
+        <div class="form-group">
+          <label>WhatsApp *</label>
+          <input type="tel" name="whatsapp" id="interesse_whatsapp" placeholder="(84) 99999-9999" required>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="telefone">Telefone/WhatsApp</label>
-        <input type="tel" id="telefone" name="telefone" required placeholder="(84) 99999-9999">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>E-mail</label>
+          <input type="email" name="email" id="interesse_email" placeholder="seu@email.com">
+        </div>
+        <div class="form-group">
+          <label>CPF *</label>
+          <input type="text" name="cpf" id="interesse_cpf" placeholder="000.000.000-00" maxlength="14" required>
+        </div>
       </div>
-      <div class="interesse-info">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Plano de Interesse *</label>
+          <select name="plano_interesse" id="interesse_plano" required>
+            <option value="" disabled selected>Selecione um Plano</option>
+            <option value="Plano Flex">Plano Flex - R$279/semana</option>
+            <option value="Plano Conect 2026">Plano Conect 2026 - R$435/semana</option>
+            <option value="Plano Conect 2025">Plano Conect 2025 - R$399/semana</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Possui CNH A? *</label>
+          <select name="possui_cnh_a" id="interesse_cnh_a" required>
+            <option value="" disabled selected>Selecione</option>
+            <option value="true">Sim</option>
+            <option value="false">Não</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Uploads -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>CNH (Print da CNH)</label>
+          <div class="file-upload-wrapper">
+            <input type="file" id="interesse_cnh_file" name="cnh_file" accept="image/*,.pdf" style="display:none">
+            <button type="button" class="file-upload-trigger" onclick="document.getElementById('interesse_cnh_file').click()">
+              <i class="fas fa-upload"></i> Escolher arquivo
+            </button>
+            <span class="file-upload-name" id="interesse_cnh_name">Nenhum arquivo escolhido</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Comprovante de Residência</label>
+          <div class="file-upload-wrapper">
+            <input type="file" id="interesse_comp_file" name="comprovante_residencial_file" accept="image/*,.pdf" style="display:none">
+            <button type="button" class="file-upload-trigger" onclick="document.getElementById('interesse_comp_file').click()">
+              <i class="fas fa-upload"></i> Escolher arquivo
+            </button>
+            <span class="file-upload-name" id="interesse_comp_name">Nenhum arquivo escolhido</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mensagem informativa -->
+      <div class="form-info-message">
         <i class="fas fa-info-circle"></i>
-        <span id="interesseDetalhes"></span>
+        <span>Enviar esses documentos agiliza o seu processo de aprovação</span>
       </div>
-      <button type="submit" class="modal-submit">
-        <i class="fab fa-whatsapp"></i>
-        Enviar via WhatsApp
+
+      <!-- Observações -->
+      <div class="form-group" style="grid-column: 1 / -1;">
+        <label>Observações</label>
+        <textarea name="observacoes" id="interesse_obs" placeholder="Conte-nos mais sobre sua necessidade ou dúvida..." rows="3"></textarea>
+      </div>
+
+      <!-- Aceite -->
+      <div class="form-checkbox-group">
+        <input type="checkbox" name="aceite_contato" id="interesse_aceite" value="true" required>
+        <span>Aceito receber contato da Moto Agora via WhatsApp, e-mail ou telefone para apresentação dos planos e esclarecimento de dúvidas. *</span>
+      </div>
+
+      <!-- Cupom -->
+      <div class="form-group" style="grid-column: 1 / -1;">
+        <label>Possui Cupom de Desconto?</label>
+        <input type="text" name="cupom_desconto" id="interesse_cupom" placeholder="Caso tenha, digite aqui">
+      </div>
+
+      <button type="submit" class="modal-submit-primary">
+        <span class="spinner-icon"></span>
+        <span class="btn-text">Enviar Cadastro →</span>
       </button>
     </form>
   </div>
 </div>
+
+<!-- Toast para interesseModal -->
+<div class="toast-notification" id="interesseToast"></div>
 
 <!-- Scroll Animations -->
 <script>
@@ -1684,37 +1665,28 @@ document.addEventListener('click', function(e) {
 
 <!-- Modal de Interesse Script -->
 <script>
-  let interesseData = {
-    moto: '',
-    plano: '',
-    pagina: 'Home'
-  };
-
   // Função para abrir o modal
   function openInteresseModal(moto = '', plano = '') {
-    interesseData.moto = moto;
-    interesseData.plano = plano;
-
-    // Atualizar texto do modal
-    const detalhesEl = document.getElementById('interesseDetalhes');
-    if (plano) {
-      detalhesEl.textContent = `Interesse no ${plano}${moto ? ` - ${moto}` : ''}`;
-    } else if (moto) {
-      detalhesEl.textContent = `Interesse na moto ${moto}`;
-    } else {
-      detalhesEl.textContent = 'Preencha seus dados para receber mais informações';
-    }
-
-    // Mostrar modal
-    document.getElementById('interesseModal').classList.add('active');
+    const modal = document.getElementById('interesseModal');
+    modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+
+    // Preencher plano se especificado
+    if (plano) {
+      document.getElementById('interesse_plano').value = plano;
+    }
   }
 
   // Função para fechar o modal
   function closeInteresseModal() {
-    document.getElementById('interesseModal').classList.remove('active');
+    const modal = document.getElementById('interesseModal');
+    modal.classList.remove('active');
     document.body.style.overflow = '';
     document.getElementById('interesseForm').reset();
+
+    // Reset file names
+    document.getElementById('interesse_cnh_name').textContent = 'Nenhum arquivo escolhido';
+    document.getElementById('interesse_comp_name').textContent = 'Nenhum arquivo escolhido';
   }
 
   // Fechar modal ao clicar fora
@@ -1726,48 +1698,22 @@ document.addEventListener('click', function(e) {
 
   // Fechar modal com ESC
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
+    if (e.key === 'Escape' && document.getElementById('interesseModal').classList.contains('active')) {
       closeInteresseModal();
     }
   });
 
-  // Enviar formulário
-  document.getElementById('interesseForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const nome = document.getElementById('nome').value;
-    const telefone = document.getElementById('telefone').value;
-
-    // Construir mensagem para WhatsApp
-    let mensagem = `Olá! Meu nome é ${nome}.\n\n`;
-
-    if (interesseData.plano) {
-      mensagem += `Tenho interesse no *${interesseData.plano}*`;
-      if (interesseData.moto) {
-        mensagem += ` para a moto *${interesseData.moto}*`;
-      }
-    } else if (interesseData.moto) {
-      mensagem += `Tenho interesse na moto *${interesseData.moto}*`;
-    } else {
-      mensagem += `Tenho interesse em saber mais sobre os planos da Moto Agora`;
-    }
-
-    mensagem += `.`;
-
-    // Enviar para WhatsApp
-    const whatsappNumber = '5584996248216';
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensagem)}`;
-
-    window.open(whatsappURL, '_blank');
-
-    // Fechar modal
-    setTimeout(() => {
-      closeInteresseModal();
-    }, 500);
-  });
-
-  // Adicionar evento de clique nos botões de planos
+  // Inicializar formulário com leadFormHandler
   document.addEventListener('DOMContentLoaded', function() {
+    initLeadForm('interesseForm', {
+      toastId: 'interesseToast',
+      fileInputs: [
+        { input: 'interesse_cnh_file', label: 'interesse_cnh_name' },
+        { input: 'interesse_comp_file', label: 'interesse_comp_name' }
+      ]
+    });
+
+    // Adicionar evento de clique nos botões de planos
     const planCTAs = document.querySelectorAll('.plan-cta');
     planCTAs.forEach(function(btn) {
       btn.addEventListener('click', function(e) {
@@ -1783,9 +1729,6 @@ document.addEventListener('click', function(e) {
     });
   });
 </script>
-
-<!-- Form Handler Script -->
-<script src="formHandler.min.js" defer></script>
 
 <!-- Copy Email Script -->
 <script>

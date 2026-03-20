@@ -2701,10 +2701,11 @@ section + section {
 .modal-container {
   background: #ffffff;
   border-radius: 20px;
-  max-width: 500px;
+  max-width: 700px;
   width: 90%;
   max-height: 90vh;
   overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   padding: 40px 32px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
@@ -3049,6 +3050,30 @@ section + section {
   box-shadow: 0 0 0 4px rgba(0, 61, 165, 0.1);
 }
 
+/* Textarea styling for consistency */
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: 'Barlow', sans-serif;
+  transition: all 0.2s ease;
+  background: #ffffff;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-group textarea:focus {
+  outline: none;
+  border-color: #003DA5;
+  box-shadow: 0 0 0 4px rgba(0, 61, 165, 0.1);
+}
+
+.form-group textarea::placeholder {
+  color: #9ca3af;
+}
+
 .form-group select {
   cursor: pointer;
   appearance: none;
@@ -3061,6 +3086,11 @@ section + section {
 /* Error States */
 .form-group input.input-error,
 .form-group select.input-error {
+  border-color: #ef4444;
+  background-color: #fef2f2;
+}
+
+.form-group textarea.input-error {
   border-color: #ef4444;
   background-color: #fef2f2;
 }
@@ -3423,5 +3453,163 @@ section + section {
 
   .app-screenshot {
     max-height: 400px;
+  }
+}
+
+/* ================================
+   LEAD FORM MODAL STYLES
+   Styles for standardized modal forms
+   ================================ */
+
+/* File upload components */
+.file-upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.file-upload-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #0D1B3E;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: 'Barlow', sans-serif;
+}
+
+.file-upload-trigger:hover {
+  background: #1a2951;
+}
+
+.file-upload-trigger i {
+  font-size: 12px;
+}
+
+.file-upload-name {
+  font-size: 13px;
+  color: #6B7280;
+  font-style: italic;
+}
+
+/* Info message box */
+.form-info-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #F0F7FF;
+  border-left: 3px solid #0066CC;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #6B7280;
+  margin: 16px 0;
+  grid-column: 1 / -1;
+}
+
+.form-info-message i {
+  color: #0066CC;
+  font-size: 16px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* Checkbox group styling */
+.form-checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 20px 0;
+  grid-column: 1 / -1;
+}
+
+.form-checkbox-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #F5C800;
+  margin-top: 2px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.form-checkbox-group span {
+  font-size: 14px;
+  color: #6B7280;
+  line-height: 1.5;
+}
+
+/* Modal submit button with spinner */
+.modal-submit-primary {
+  width: 100%;
+  background: #F5C800;
+  color: #0D1B3E;
+  border: none;
+  border-radius: 10px;
+  padding: 16px 32px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  cursor: pointer;
+  margin-top: 24px;
+  letter-spacing: 0.02em;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.modal-submit-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(245, 200, 0, 0.35);
+}
+
+.modal-submit-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.modal-submit-primary .spinner-icon {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid rgba(13, 27, 62, 0.3);
+  border-top-color: #0D1B3E;
+  border-radius: 50%;
+  animation: spin-modal 0.7s linear infinite;
+  display: none;
+}
+
+.modal-submit-primary.loading .spinner-icon {
+  display: block;
+}
+
+.modal-submit-primary.loading .btn-text {
+  display: none;
+}
+
+@keyframes spin-modal {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive grid for modal forms */
+@media (max-width: 768px) {
+  .modal-form .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .file-upload-trigger {
+    font-size: 13px;
+    padding: 9px 14px;
+  }
+
+  .modal-submit-primary {
+    font-size: 16px;
+    padding: 14px 24px;
   }
 }
