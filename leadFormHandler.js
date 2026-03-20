@@ -130,9 +130,9 @@
       const cnhFile = form.querySelector('[name="cnh_file"]')?.files[0];
       const compFile = form.querySelector('[name="comprovante_residencial_file"]')?.files[0];
 
-      // Add boolean flags for file uploads
-      webhookData.append('cnh_file_enviado', !!cnhFile);
-      webhookData.append('comprovante_residencial_file_enviado', !!compFile);
+      // Add boolean flags for file uploads (convert to string to ensure transmission)
+      webhookData.append('cnh_file_enviado', cnhFile ? 'true' : 'false');
+      webhookData.append('comprovante_residencial_file_enviado', compFile ? 'true' : 'false');
 
       if (cnhFile) {
         webhookData.append('cnh_file', cnhFile);
