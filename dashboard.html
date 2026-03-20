@@ -5,9 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard – Moto Agora</title>
 
-<!-- Favicon -->
-<link rel="icon" type="image/webp" href="imagens/assets/favicon.webp">
-<link rel="apple-touch-icon" href="imagens/assets/favicon.webp">
+<!-- Favicon - Múltiplos formatos para compatibilidade -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/imagens/assets/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/imagens/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/imagens/assets/favicon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/imagens/assets/apple-touch-icon.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -161,6 +164,25 @@ td.muted { color: var(--muted); }
 .check-yes { color: var(--c-aprovado); display: block; }
 .check-no  { color: var(--muted2); display: block; }
 
+/* ── Status Badges ── */
+.status-badge {
+  display: inline-block;
+  padding: .3rem .7rem;
+  border-radius: 12px;
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  line-height: 1;
+}
+.status-novo { background: #3B82F6; color: white; }
+.status-em_analise { background: #F59E0B; color: #111827; }
+.status-pre_aprovado { background: #06B6D4; color: white; }
+.status-aprovado { background: var(--c-aprovado); color: white; }
+.status-reprovado { background: #DC2626; color: white; }
+.status-arquivado { background: var(--muted); color: white; }
+
 /* ── Empty ── */
 .empty { text-align: center; padding: 3rem 1rem; color: var(--muted2); }
 .empty svg { opacity: .2; margin: 0 auto .75rem; display: block; }
@@ -274,6 +296,15 @@ td.muted { color: var(--muted); }
       <option value="true">Com CNH A</option>
       <option value="false">Sem CNH A</option>
     </select>
+    <select class="filter" id="f-status" onchange="applyFilters()">
+      <option value="">Todos os status</option>
+      <option value="novo">Novo</option>
+      <option value="em_analise">Em Análise</option>
+      <option value="pre_aprovado">Pré-aprovado</option>
+      <option value="aprovado">Aprovado</option>
+      <option value="reprovado">Reprovado</option>
+      <option value="arquivado">Arquivado</option>
+    </select>
     <div class="date-group">
       <label>De</label>
       <input type="date" class="filter" id="f-date-from" onchange="applyFilters()">
@@ -290,7 +321,7 @@ td.muted { color: var(--muted); }
     <table class="desktop-table">
       <thead>
         <tr>
-          <th>#</th><th>Nome</th><th>WhatsApp</th><th>E-mail</th>
+          <th>#</th><th>Nome</th><th>Status</th><th>WhatsApp</th><th>E-mail</th>
           <th>CPF</th><th>Plano</th><th>CNH A</th><th>Aceite</th>
           <th>Cupom</th><th>Data</th>
         </tr>
@@ -376,7 +407,7 @@ td.muted { color: var(--muted); }
   }
 
   function setLoading() {
-    document.getElementById('tbody-desktop').innerHTML = `<tr><td colspan="10" style="text-align:center;padding:2.5rem;color:var(--muted2)">Carregando…</td></tr>`;
+    document.getElementById('tbody-desktop').innerHTML = `<tr><td colspan="11" style="text-align:center;padding:2.5rem;color:var(--muted2)">Carregando…</td></tr>`;
     document.getElementById('mobile-list').innerHTML = `<div class="empty"><p>Carregando…</p></div>`;
   }
 
@@ -385,7 +416,7 @@ td.muted { color: var(--muted); }
     const emptyHTML = `<div class="empty">
       <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
       <p>${msg}</p></div>`;
-    document.getElementById('tbody-desktop').innerHTML = `<tr><td colspan="10">${emptyHTML}</td></tr>`;
+    document.getElementById('tbody-desktop').innerHTML = `<tr><td colspan="11">${emptyHTML}</td></tr>`;
     document.getElementById('mobile-list').innerHTML = emptyHTML;
   }
 
@@ -394,6 +425,7 @@ td.muted { color: var(--muted); }
     const q  = document.getElementById('f-search').value.toLowerCase();
     const p  = document.getElementById('f-plano').value;
     const c  = document.getElementById('f-cnh').value;
+    const s  = document.getElementById('f-status').value;
     const df = document.getElementById('f-date-from').value;
     const dt = document.getElementById('f-date-to').value;
 
@@ -401,10 +433,11 @@ td.muted { color: var(--muted); }
       const mq  = !q  || [r.nome_completo, r.cpf, r.email, r.whatsapp].some(f => f?.toLowerCase().includes(q));
       const mp  = !p  || r.plano_interesse === p;
       const mc  = !c  || String(r.possui_cnh_a) === c;
+      const ms  = !s  || (r.status || 'novo') === s;
       const d   = r.created_at ? r.created_at.slice(0, 10) : '';
       const mdf = !df || d >= df;
       const mdt = !dt || d <= dt;
-      return mq && mp && mc && mdf && mdt;
+      return mq && mp && mc && ms && mdf && mdt;
     });
 
     currentPage = 1;
@@ -422,6 +455,20 @@ td.muted { color: var(--muted); }
   const iconYes = `<svg class="check-yes" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 13 4 4L19 7"/></svg>`;
   const iconNo  = `<svg class="check-no"  width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>`;
 
+  // ── Status Badge ─────────────────────────────────
+  function statusBadge(status) {
+    const labels = {
+      'novo': 'Novo',
+      'em_analise': 'Em Análise',
+      'pre_aprovado': 'Pré-aprovado',
+      'aprovado': 'Aprovado',
+      'reprovado': 'Reprovado',
+      'arquivado': 'Arquivado'
+    };
+    const label = labels[status] || 'Novo';
+    return `<span class="status-badge status-${status || 'novo'}">${label}</span>`;
+  }
+
   // ── Render ───────────────────────────────────────
   function renderAll() {
     if (!filtered.length) { setEmpty(); return; }
@@ -436,6 +483,7 @@ td.muted { color: var(--muted); }
       <tr onclick="openModal('${r.id}')">
         <td class="muted">${start + i + 1}</td>
         <td class="td-name">${r.nome_completo}</td>
+        <td>${statusBadge(r.status || 'novo')}</td>
         <td class="muted">${r.whatsapp}</td>
         <td class="muted">${r.email}</td>
         <td class="muted">${r.cpf}</td>
@@ -455,6 +503,7 @@ td.muted { color: var(--muted); }
             <div class="mc-name">${r.nome_completo}</div>
             <div class="mc-plano">${r.plano_interesse}</div>
           </div>
+          ${statusBadge(r.status || 'novo')}
         </div>
         <div class="mc-row">
           <div class="mc-item">
@@ -515,6 +564,7 @@ td.muted { color: var(--muted); }
       <div class="detail"><div class="key">E-mail</div><div class="val">${r.email}</div></div>
       <div class="detail"><div class="key">CPF</div><div class="val">${r.cpf}</div></div>
       <div class="detail"><div class="key">Plano</div><div class="val">${r.plano_interesse}</div></div>
+      <div class="detail"><div class="key">Status</div><div class="val">${statusBadge(r.status || 'novo')}</div></div>
       <div class="detail"><div class="key">CNH A</div><div class="val">${r.possui_cnh_a ? 'Sim' : 'Não'}</div></div>
       <div class="detail"><div class="key">Aceite</div><div class="val">${r.aceite_contato ? 'Sim' : 'Não'}</div></div>
       <div class="detail"><div class="key">Cupom</div><div class="val">${r.cupom_desconto || '—'}</div></div>
